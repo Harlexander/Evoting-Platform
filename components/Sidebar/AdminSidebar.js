@@ -14,32 +14,32 @@ const AdminSidebar = () => {
 const Links = () => {
     const navigation = [
         {
-            href : "/overview",
+            href : "/admin/overview",
             item  : "Overview",
             icon : <ChartPieIcon className='h-5'/>
         },
         {
-            href : "/profile",
+            href : "/admin/profile",
             item  : "Profile",
             icon : <UserIcon className='h-5'/>
         },
         {
-            href : "/events",
-            item  : "My Events",
+            href : "/admin/create-event",
+            item  : "Create Event",
             icon : <DocumentAddIcon className='h-5'/>
         },
         {
-            href : "/Event-1",
+            href : "/admin/Event-1",
             item  : "Event 1",
             icon : <DocumentIcon className='h-5'/>
         },
         {
-            href : "/transactions",
+            href : "/admin/transactions",
             item  : "Transactions",
             icon : <ViewListIcon className='h-5'/>
         },
         {
-            href : "/signout",
+            href : "/admin/signout",
             item  : "Sign Out",
             icon : <LogoutIcon className='h-5'/>
         },
@@ -82,7 +82,7 @@ const Links = () => {
                 <a
                 data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
                 aria-current="true"
-                class="
+                className="
                     flex items-center gap-5
                     block
                     py-3
