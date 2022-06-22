@@ -9,7 +9,7 @@ export const CreateEvent = () => {
     const { handleChanges, data, setData } = useCreateEvent();
 
     return (
-    <div className='bg-white p-10'>
+    <div className='bg-white p-5 md:p-10'>
       <form className='space-y-10'>
         <div>
             <lable>Event Name</lable>
@@ -86,7 +86,7 @@ export const RegistrationForm =() => {
         const { handleChanges } = useCreateEvent();
 
     return(
-        <div className='bg-white p-10 my-20'>
+        <div className='bg-white p-5 md:p-10 my-20'>
             <p className='text-xl mb-5'>Registration Information</p>
 
         <form className='space-y-8'>
@@ -160,7 +160,7 @@ export const CategoriesForm = () => {
     const { handleChanges, handleCategory, data, addCategory, removeCategory } = useCreateEvent();
 
     return(
-      <div className='bg-white space-y-5 p-10'>
+      <div className='bg-white space-y-5 p-5 md:p-10'>
         <p className='text-2xl'> Categories</p>
         <p className=''>Kindly input all the categories for voting</p>
       
@@ -185,7 +185,7 @@ export const VotingForm = () => {
         const { handleChanges } = useCreateEvent();
 
     return(
-        <div className='bg-white space-y-5 my-10 p-10'>
+        <div className='bg-white space-y-5 my-10 p-5 md:p-10'>
             <p className='text-2xl'>Voting Information</p>
             <div className='grid grid-cols-2 gap-3'>
                 <div>
