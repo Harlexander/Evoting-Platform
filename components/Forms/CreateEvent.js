@@ -50,18 +50,14 @@ export const CreateEvent = () => {
             <div className="flex justify-between">
                 <Switch.Label className="mr-4">Online Registration</Switch.Label>
                 <Switch
-                checked={data.register}
+                checked={data.registration}
                 name="registration"
-                onChange={() => setData(prev => ({...prev, register : !data.register}))}
-                className={`${
-                    data.register ? 'bg-green' : 'bg-gray'
-                } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                onChange={() => setData(prev => ({...prev, registration : !data.registration}))}
+                className={`relative flex h-6 gap-0 bg-gray-light w-20 px-0 items-center justify-center  rounded-full transition-colors focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-2`}
                 >
-                <span
-                    className={`${
-                    data.register ? 'translate-x-6' : 'translate-x-1'
-                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-                />
+                <span className={`${data.registration ? 'bg-green text-white' : 'bg-gray-light'} px-3 rounded-full`}>Yes</span>
+                <span className={`${!data.registration ? 'bg-green text-white' : 'bg-gray-light'} px-3 rounded-full`}>No</span>
+               
                 </Switch>
             </div>
             </Switch.Group>  
@@ -132,24 +128,18 @@ export const RegistrationForm =() => {
             <div className="flex justify-between">
                 <Switch.Label className="mr-4">Is Registration Free</Switch.Label>
                 <Switch
-               checked={data.registration_free}
-               name="registration_free"
-               onChange={() => setData(prev => ({...prev, registration_free : !data.registration_free}))}
-                className={`${
-                    data.registration_free ? 'bg-green' : 'bg-gray'
-                } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-                >
-                <span
-                    className={`${
-                    data.registration_free ? 'translate-x-6' : 'translate-x-1'
-                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-                />
+                    checked={data.registration_free}
+                    name="registration_free"
+                    onChange={() => setData(prev => ({...prev, registration_free : !data.registration_free}))}
+                    className={`relative flex h-6 gap-0 bg-gray-light w-20 px-0 items-center justify-center  rounded-full transition-colors focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:ring-offset-2`}
+                    >
+                    <span className={`${data.registration_free ? 'bg-green text-white' : 'bg-gray-light'} px-3 rounded-full`}>Yes</span>
+                    <span className={`${!data.registration_free ? 'bg-green text-white' : 'bg-gray-light'} px-3 rounded-full`}>No</span>     
                 </Switch>
             </div>
             </Switch.Group>  
           </div>
         </form>
-           
         </div>
     )
 }
