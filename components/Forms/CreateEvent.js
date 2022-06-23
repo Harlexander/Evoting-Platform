@@ -5,8 +5,8 @@ import { useCreateEvent } from '../../context/CreateEventContext'
 
 export const CreateEvent = () => {
     const [enabled, setEnabled] = useState(false)
-
-    const { handleChanges, data, setData } = useCreateEvent();
+    const { handleChanges, data, setData, handleImage } = useCreateEvent();
+    console.log(data.register)
 
     return (
     <div className='bg-white p-5 md:p-10'>
@@ -30,8 +30,7 @@ export const CreateEvent = () => {
         </div>
         <div className="">
         <lable className="block">Event Image</lable>
-            <input onChange={handleChanges} className="form-control
-
+            <input onChange={handleImage} className="form-control
             block
             w-full
             px-3
@@ -55,12 +54,12 @@ export const CreateEvent = () => {
                 name="registration"
                 onChange={() => setData(prev => ({...prev, register : !data.register}))}
                 className={`${
-                    enabled ? 'bg-green' : 'bg-gray'
+                    data.register ? 'bg-green' : 'bg-gray'
                 } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                 >
                 <span
                     className={`${
-                    enabled ? 'translate-x-6' : 'translate-x-1'
+                    data.register ? 'translate-x-6' : 'translate-x-1'
                     } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
                 />
                 </Switch>
@@ -72,6 +71,7 @@ export const CreateEvent = () => {
             <label>Event Description</label>
             <textarea
             name='event_description'
+            onChange={handleChanges}
             className='bg-[#D9D9D9] p-3 w-full'/>
           </div>
       </form>
@@ -81,9 +81,7 @@ export const CreateEvent = () => {
 
 
 export const RegistrationForm =() => {
-    const [enabled, setEnabled] = useState(false)
-
-        const { handleChanges } = useCreateEvent();
+        const { handleChanges, regFields, data, setData } = useCreateEvent();
 
     return(
         <div className='bg-white p-5 md:p-10 my-20'>
@@ -110,19 +108,19 @@ export const RegistrationForm =() => {
 
                 <div className='fields flex flex-wrap gap-3'>
                     <div className='mt-3'>
-                        <input onChange={handleChanges} type={"checkbox"} className="hidden" id="name" name='name'/>
+                        <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.name} className="hidden" id="name" name='name'/>
                         <label htmlFor="name" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Name +</label>
                     </div>
                     <div className='mt-3'>
-                        <input onChange={handleChanges} type={"checkbox"} className="hidden" id="email" name='email'/>
+                        <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.email} className="hidden" id="email" name='email'/>
                         <label htmlFor="email" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Email +</label>
                     </div>
                     <div className='mt-3'>
-                        <input onChange={handleChanges} type={"checkbox"} className="hidden" id="mobile" name='mobile'/>
+                        <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.mobile} className="hidden" id="mobile" name='mobile'/>
                         <label htmlFor="mobile" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Mobile +</label>
                     </div>
                     <div className='mt-3'>
-                        <input onChange={handleChanges} type={"checkbox"} className="hidden" id="category" name='category'/>
+                        <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.category} className="hidden" id="category" name='category'/>
                         <label htmlFor="category" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Category +</label>
                     </div>
                 </div>
@@ -134,15 +132,16 @@ export const RegistrationForm =() => {
             <div className="flex justify-between">
                 <Switch.Label className="mr-4">Is Registration Free</Switch.Label>
                 <Switch
-                checked={enabled}
-                onChange={setEnabled}
+               checked={data.registration_free}
+               name="registration_free"
+               onChange={() => setData(prev => ({...prev, registration_free : !data.registration_free}))}
                 className={`${
-                    enabled ? 'bg-green' : 'bg-gray'
+                    data.registration_free ? 'bg-green' : 'bg-gray'
                 } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                 >
                 <span
                     className={`${
-                    enabled ? 'translate-x-6' : 'translate-x-1'
+                    data.registration_free ? 'translate-x-6' : 'translate-x-1'
                     } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
                 />
                 </Switch>
@@ -173,7 +172,7 @@ export const CategoriesForm = () => {
                     </div>
                 ))
             }
-            <button onClick={addCategory} className='bg-green px-5 py-3 rounded-full text-xl text-white mt-5'>Add New Category</button>
+            <button onClick={addCategory} className='bg-green px-3 py-2 md:px-5 md:py-3 rounded-full md:text-xl text-white mt-5'>Add New Category</button>
             <p className='text-md font-semibold'>You can add more categories later!</p>
         </div>
       </div>  
@@ -193,14 +192,14 @@ export const VotingForm = () => {
                     <input onChange={handleChanges}
                     className='bg-[#D9D9D9] p-2 w-full'
                     type={"date"}
-                    name="start_date"/>
+                    name="voting_start_date"/>
                 </div>
                 <div>
                     <label>Closing Date</label>
                     <input onChange={handleChanges}
                     className='bg-[#D9D9D9] p-2 w-full'
                     type={"date"}
-                    name="start_date"/>
+                    name="voting_close_date"/>
                 </div>
             </div>
             <div>
@@ -208,7 +207,7 @@ export const VotingForm = () => {
                 <input onChange={handleChanges}
                 className='bg-[#D9D9D9] p-2 w-full'
                 type={"number"}
-                name="fee"/>
+                name="voting_fee"/>
             </div>
 
             <div className='flex justify-end'>
