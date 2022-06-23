@@ -13,7 +13,7 @@ export const CreateEvent = () => {
       <form className='space-y-10'>
         <div>
             <lable>Event Name</lable>
-            <input onChange={handleChanges} type={'text'} name="event_name" className='bg-[#D9D9D9] p-3 w-full'/>
+            <input onChange={handleChanges} type={'text'} name="event_name" className='bg-gray-light p-3 w-full'/>
         </div>
         <div>
             <lable>Event Type</lable>
@@ -38,7 +38,7 @@ export const CreateEvent = () => {
             text-base
             font-normal
             text-gray-700
-            bg-[#D9D9D9]
+            bg-gray-light
             rounded
             transition
             ease-in-out
@@ -68,7 +68,7 @@ export const CreateEvent = () => {
             <textarea
             name='event_description'
             onChange={handleChanges}
-            className='bg-[#D9D9D9] p-3 w-full'/>
+            className='bg-gray-light p-3 w-full'/>
           </div>
       </form>
     </div>
@@ -80,21 +80,21 @@ export const RegistrationForm =() => {
         const { handleChanges, regFields, data, setData } = useCreateEvent();
 
     return(
-        <div className='bg-white font-mulish p-5 md:p-10 my-20'>
+        <div  className={`${!data.registration ? "hidden" : "block"} bg-white font-mulish p-5 md:p-10 my-20`}>
             <p className='text-xl mb-5'>Registration Information</p>
 
         <form className='space-y-8'>
              <div>
                 <label>Start Date : </label>
                 <input onChange={handleChanges}
-                 className='bg-[#D9D9D9] p-2 w-full'
+                 className='bg-gray-light p-2 w-full'
                 type={"date"}
                 name="reg_start_date"/>
             </div>
             <div>
                 <label>Close Date : </label>
                 <input onChange={handleChanges}
-                 className='bg-[#D9D9D9] p-2 w-full'
+                 className='bg-gray-light p-2 w-full'
                 type={"date"}
                 name="reg_end_date"/>
             </div>
@@ -105,19 +105,19 @@ export const RegistrationForm =() => {
                 <div className='fields flex flex-wrap gap-3'>
                     <div className='mt-3'>
                         <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.name} className="hidden" id="name" name='name'/>
-                        <label htmlFor="name" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Name +</label>
+                        <label htmlFor="name" className='px-3 py-3 bg-gray-light rounded-full'>Contestant Name +</label>
                     </div>
                     <div className='mt-3'>
                         <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.email} className="hidden" id="email" name='email'/>
-                        <label htmlFor="email" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Email +</label>
+                        <label htmlFor="email" className='px-3 py-3 bg-gray-light rounded-full'>Contestant Email +</label>
                     </div>
                     <div className='mt-3'>
                         <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.mobile} className="hidden" id="mobile" name='mobile'/>
-                        <label htmlFor="mobile" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Contestant Mobile +</label>
+                        <label htmlFor="mobile" className='px-3 py-3 bg-gray-light rounded-full'>Contestant Mobile +</label>
                     </div>
                     <div className='mt-3'>
                         <input onChange={regFields} type={"checkbox"} checked={data.reg_fields.category} className="hidden" id="category" name='category'/>
-                        <label htmlFor="category" className='px-3 py-3 bg-[#D9D9D9] rounded-full'>Category +</label>
+                        <label htmlFor="category" className='px-3 py-3 bg-gray-light rounded-full'>Category +</label>
                     </div>
                 </div>
                 <p className=''>The following selected fields are the information a user as to fill to register; Name, Image, Title are selected by default.</p>
@@ -139,6 +139,13 @@ export const RegistrationForm =() => {
             </div>
             </Switch.Group>  
           </div>
+          <div className={`${data.registration_free ? "hidden" : "block"}`}>
+            <label>Registration Fee</label>
+            <input onChange={handleChanges}
+                className='bg-gray-light p-2 w-full'
+                type={'number'}
+                name="reg_fee"/>
+          </div>
         </form>
         </div>
     )
@@ -149,15 +156,15 @@ export const CategoriesForm = () => {
     const { handleChanges, handleCategory, data, addCategory, removeCategory } = useCreateEvent();
 
     return(
-      <div className='bg-white font-mulish space-y-5 p-5 md:p-10'>
-        <p className='text-2xl'> Categories</p>
+      <div className={`${data.event_type !== "award" ? "hidden" : "block"} bg-white font-mulish p-5 md:p-10 my-20`}>
+        <p className='text-2xl'>Categories</p>
         <p className=''>Kindly input all the categories for voting</p>
       
         <div className='space-y-2'>
             {
                 data.categories.map(( item, index ) => (
                     <div className='flex gap-2' key={index}>
-                        <input name='category' value={data.categories[index].category} onChange={(e) => handleCategory(e, index)} type={'text'} className='bg-[#D9D9D9] p-3 w-full rounded-full'/>
+                        <input name='category' value={data.categories[index].category} onChange={(e) => handleCategory(e, index)} type={'text'} className='bg-gray-light p-3 w-full rounded-full'/>
                         <div onClick={() => removeCategory(index)} className='bg-red rounded-full p-3'><TrashIcon className='h-7 text-white'/></div>
                     </div>
                 ))
@@ -180,14 +187,14 @@ export const VotingForm = () => {
                 <div>
                     <label>Start Date</label>
                     <input onChange={handleChanges}
-                    className='bg-[#D9D9D9] p-2 w-full'
+                    className='bg-gray-light p-2 w-full'
                     type={"date"}
                     name="voting_start_date"/>
                 </div>
                 <div>
                     <label>Closing Date</label>
                     <input onChange={handleChanges}
-                    className='bg-[#D9D9D9] p-2 w-full'
+                    className='bg-gray-light p-2 w-full'
                     type={"date"}
                     name="voting_close_date"/>
                 </div>
@@ -195,7 +202,7 @@ export const VotingForm = () => {
             <div>
                 <label>Voting Fee</label>
                 <input onChange={handleChanges}
-                className='bg-[#D9D9D9] p-2 w-full'
+                className='bg-gray-light p-2 w-full'
                 type={"number"}
                 name="voting_fee"/>
             </div>
